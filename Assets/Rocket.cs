@@ -26,6 +26,22 @@ public class Rocket : MonoBehaviour {
         checkRotate();
 	}
 
+    void OnCollisionEnter(Collision collision)
+    {
+        switch(collision.gameObject.tag)
+        {
+            case "friendly":
+                //do nothing
+                break;
+            case "fuel":
+                //do nothing
+                break;
+            default:
+                Debug.Log("Dead");
+                break;
+        }
+    }
+
     private void checkThrust()
     {
         if (Input.GetKey((KeyCode.Space)))
