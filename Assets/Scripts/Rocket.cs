@@ -18,6 +18,9 @@ public class Rocket : MonoBehaviour {
 
     [SerializeField] float levelLoadDelay = 2f;
 
+    GameObject flameLight;
+    Light lightRef;
+
     Rigidbody rigidBody;
     AudioSource engineSound;
 
@@ -27,8 +30,11 @@ public class Rocket : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rigidBody = GetComponent<Rigidbody>();
-        engineSound = GetComponent<AudioSource>();
+        engineSound = GetComponentInChildren<AudioSource>();
         engineSound.Stop();
+        flameLight = GameObject.FindGameObjectWithTag("flameLight");
+        lightRef = flameLight.GetComponent<Light>();
+        lightRef.enabled = false;
     }
 	
 	// Update is called once per frame
@@ -95,6 +101,7 @@ public class Rocket : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Space))
         {
             engineSound.Stop();
+            lightRef.enabled = false;
             mainEngineParticles.Stop();
         }
     }
@@ -106,6 +113,7 @@ public class Rocket : MonoBehaviour {
         {
             engineSound.PlayOneShot(mainEngine);
         }
+        lightRef.enabled = true;
         mainEngineParticles.Play();
     }
 

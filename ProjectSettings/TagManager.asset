@@ -6,6 +6,7 @@ TagManager:
   tags:
   - friendly
   - fuel
+  - flameLight
   layers:
   - Default
   - TransparentFX
